@@ -32,4 +32,4 @@ class Bookings(models.Model):
             })
     
     def __str__(self):
-        return f"{self.id}, {self.name}, {self.description}, {self.total_quantity}, {self.available_quantity}"
+        return f"{self.id}, {self.user}, {self.resource}, {self.purchase_quantity}, {self.booking_date}"
