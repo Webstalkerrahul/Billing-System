@@ -102,12 +102,15 @@ class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [IsAdminUser]
 
+    def get_queryset(self):
+        return User.objects.filter(id=self.request.user.id)
+
     def get_serializer_class(self):
         if self.action == 'register':
             return UserSerializer
         return self.serializer_class
 
-    @action(detail=False, methods=['POST'], permission_classes=[IsAdminUser ])
+    @action(detail=False, methods=['POST'], permission_classes=[IsAdminUser])
     def register(self, request):
         username = request.data.get('username')
         email = request.data.get('email')
@@ -138,3 +141,4 @@ class UserViewSet(ModelViewSet):
             }, status=status.HTTP_201_CREATED)
         except Exception as e:
             return Response({'message': 'Error creating user.', 'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+

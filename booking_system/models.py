@@ -1,6 +1,6 @@
-from django.core.exceptions import ValidationError
-from django.db import models
-from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError # type: ignore
+from django.db import models # type: ignore
+from django.contrib.auth.models import User # type: ignore
 
 class Resources(models.Model):
     id = models.AutoField(primary_key=True)
